@@ -12,6 +12,8 @@ jobs:
           go-version: 'stable'
       - name: Gather dependencies
         run: go mod download
+      - name: echo secret
+        run: echo "${{ secrets.CODECOV_ORG_TOKEN }}"
       - name: Run coverage
         run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
       - name: Upload coverage to Codecov
